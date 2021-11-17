@@ -1,0 +1,1 @@
+sc create mpd binPath="d:\utils\mpd\mpd.exe d:\utils\mpd\mpd.conf"

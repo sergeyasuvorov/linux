@@ -1,0 +1,38 @@
+# Sidebar Navigation
+bind index,pager <C-down> sidebar-next
+bind index,pager <C-up> sidebar-prev
+bind index,pager <C-right> sidebar-open
+
+# index and pager shortcuts
+bind index,pager D purge-message
+bind index,pager @ compose-to-sender
+bind index,pager R group-reply
+#bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+# Save all attachments
+macro index,pager \cd "<pipe-message>ripmime -i - -d ~/Downloads && rm ~/Downloads/textfile*" "Save all non-text attachments using ripmime"
+# opening urls with urlscan
+macro index,pager \cb "<pipe-message>urlscan<enter>" "call urlscan to extract URLs out of a message"
+# Sync all email
+macro index,pager ^ "<shell-escape>mbsync -a<enter><shell-escape>notmuch new<enter>" "sync email"
+
+# View attachments properly.
+bind attach <space> view-mailcap
+
+# Drafts
+bind compose \cP postpone-message
+bind index \cp recall-message
+
+# finding stuff
+bind editor <tab> complete-query
+bind index,pager \cf vfolder-from-query
+macro index,pager \ca \
+    "<pipe-message>khard add-email<return>" \
+    "add the sender email address to khard"
+
+macro index,pager <f1> "<save-message>+gmail/inbox<enter>"
+macro index,pager <f2> "<save-message>+yandex/inbox<enter>"
+macro index,pager <f3> "<save-message>+firstline/inbox<enter>"
+macro index,pager <f4> "<save-message>+odysseus/inbox<enter>"
+macro index,pager <f5> "<save-message>+andersen/inbox<enter>"

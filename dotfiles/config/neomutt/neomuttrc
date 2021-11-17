@@ -1,0 +1,155 @@
+# paths
+set folder = ~/mail
+set message_cachedir = ~/.cache/neomutt/bodies
+#set certificate_file = ~/dotfiles/office/certificates.crt
+set mailcap_path = ~/.config/neomutt/mailcap
+set tmpdir = ~/.cache/neomutt/tmp
+
+
+# basic options
+auto_view text/html text/calendar application/ics
+set wait_key = no
+set mbox_type = Maildir
+set timeout = 15
+set mail_check = 60
+set delete
+set quit
+set thorough_search
+set mail_check_stats
+#set new_mail_command="echo -e '\a'"
+set new_mail_command="notify-send -a neomutt 'New Email' '%n new messages, %u unread.' &"
+unset confirmappend
+unset move
+unset mark_old
+#set beep_new
+unset askcc
+unset help
+
+# compose View Options
+set envelope_from                    # which from?
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+unset askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+set editor = "emacsclient -c"
+set text_flowed
+unset sig_dashes                     # no dashes before sig
+unset mime_forward                   # forward attachments as part of body
+
+# status bar, date format, finding stuff etc.
+set status_chars = " *%A"
+set status_format = "[ Folder: %D ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]%>─%?p?( %p postponed )?"
+set date_format = "%d.%m.%Y %H:%M"
+set index_format = "[%Z] %?X?A&-? %D  %-20.20F  %s"
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set send_charset = "utf-8:iso-8859-1:us-ascii"
+set charset = "utf-8"
+
+# Pager View Options
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+
+# email headers and attachments
+ignore *
+unignore from: to: cc: bcc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: bcc: date: subject:
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
+# GPG/PGP 
+set pgp_sign_as = 2F283D0D
+set crypt_use_gpgme = yes
+set crypt_autosign = no
+set crypt_verify_sig = yes
+set crypt_replysign = yes
+set crypt_replyencrypt = yes
+set crypt_replysignencrypted = yes
+
+# sidebar patch config
+set sidebar_visible
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_width = 30
+set sidebar_divider_char = ' | '
+set sidebar_indent_string = '  '
+#set sidebar_format = "%D %* [%?N?%N / ?%S]"
+set sidebar_format = "%D%* %<N?%N/>%<S?%S>"
+
+# Mailboxes to show in the sidebar.
+named-mailboxes "gmail" =gmail_dummy \
+		"inbox" =gmail/inbox \
+		"  drt" =gmail/drt \
+		"sent" =gmail/sent \
+		"drafts" =gmail/drafts \
+		"spam" =gmail/spam \
+		"trash" =gmail/trash
+
+named-mailboxes "yandex" =yandex_dummy \
+		"inbox" =yandex/inbox \
+		"  jf" =yandex/jf \
+		"sent" =yandex/sent \
+		"drafts" =yandex/drafts \
+		"spam" =yandex/spam \
+		"trash" =yandex/trash
+
+named-mailboxes "firstline" =firstline_dummy \
+		"inbox" =firstline/inbox \
+		"  drt" =firstline/drt \
+		"  github" =firstline/github \
+		"sent" =firstline/sent \
+		"drafts" =firstline/drafts \
+		"spam" =firstline/spam \
+		"trash" =firstline/trash
+
+named-mailboxes "odysseus" =odysseus_dummy \
+		"inbox" =odysseus/inbox \
+		"sent" =odysseus/sent \
+		"drafts" =odysseus/drafts \
+		"spam" =odysseus/spam \
+		"trash" =odysseus/trash
+
+named-mailboxes "andersen" =andersen_dummy \
+		"inbox" =andersen/inbox \
+		"sent" =andersen/sent \
+		"drafts" =andersen/drafts \
+		"spam" =andersen/spam \
+		"trash" =andersen/trash
+
+# source colors and keybindings
+source ~/.config/neomutt/colors
+source ~/.config/neomutt/bindings
+
+# And finally the account config for multiple accounts
+#############################################################
+
+# by default, use mailbox
+set realname = "Sergey Suvorov"
+set spoolfile = "+gmail/inbox"
+source ~/.config/neomutt/accounts/gmail
+
+# when changing into other mailboxes, use different adresses etc.
+folder-hook gmail/* source ~/.config/neomutt/accounts/gmail
+folder-hook yandex/* source ~/.config/neomutt/accounts/yandex
+folder-hook firstline/* source ~/.config/neomutt/accounts/firstline
+folder-hook andersen/* source ~/.config/neomutt/accounts/andersen
+folder-hook odysseus/* source ~/.config/neomutt/accounts/odysseus
+
+set query_command = "khard email --parsable --search-in-source-files '%s'"

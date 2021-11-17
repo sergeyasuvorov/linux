@@ -1,0 +1,325 @@
+#################################
+######## Account gmail ##########
+#################################
+
+IMAPAccount gmail
+Host imap.gmail.com
+port 993
+User sergeytn81@gmail.com
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.config/neomutt/msmtp-gmail.gpg)}"
+#AuthMechs XOAUTH2
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Remote storage
+IMAPStore gmail-remote
+Account gmail
+
+# Local storage
+MaildirStore gmail-local
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/inbox
+
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:inbox
+Create Both
+Expunge Both
+
+Channel gmail-drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:drafts
+Create Both
+Expunge Both
+
+Channel gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:sent
+Create Both
+Expunge Both
+
+Channel gmail-trash
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:trash
+Create Both
+Expunge Both
+
+Channel gmail-spam
+Far :gmail-remote:"[Gmail]/Spam"
+Near :gmail-local:spam
+Create Both
+Expunge Both
+
+Channel gmail-drt
+Far :gmail-remote:"drt"
+Near :gmail-local:drt
+Create Both
+Expunge Both
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-drt
+Channel gmail-drafts
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-spam
+
+#################################
+######## Account yandex #########
+#################################
+
+IMAPAccount yandex
+Host imap.yandex.ru
+port 993
+User sergeytn81@yandex.ru
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.config/neomutt/msmtp-yandex.gpg)}"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Remote storage
+IMAPStore yandex-remote
+Account yandex
+
+# Local storage
+MaildirStore yandex-local
+Path ~/mail/yandex/
+Inbox ~/mail/yandex/inbox
+
+Channel yandex-inbox
+Far :yandex-remote:"INBOX"
+Near :yandex-local:inbox
+Create Both
+Expunge Both
+
+Channel yandex-jf
+Far :yandex-remote:"jf"
+Near :yandex-local:jf
+Create Both
+Expunge Both
+
+Channel yandex-drafts
+Far :yandex-remote:"Drafts"
+Near :yandex-local:drafts
+Create Both
+Expunge Both
+
+Channel yandex-sent
+Far :yandex-remote:"Sent"
+Near :yandex-local:sent
+Create Both
+Expunge Both
+
+Channel yandex-trash
+Far :yandex-remote:"Trash"
+Near :yandex-local:trash
+Create Both
+Expunge Both
+
+Channel yandex-spam
+Far :yandex-remote:"Spam"
+Near :yandex-local:spam
+Create Both
+Expunge Both
+
+Group yandex
+Channel yandex-inbox
+Channel yandex-jf
+Channel yandex-drafts
+Channel yandex-sent
+Channel yandex-trash
+Channel yandex-spam
+
+#################################
+####### Account firstline #######
+#################################
+
+IMAPAccount firstline
+Host imap.gmail.com
+port 993
+User sergey.suvorov@firstlinesoftware.com
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.config/neomutt/msmtp-firstline.gpg)}"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Remote storage
+IMAPStore firstline-remote
+Account firstline
+
+# Local storage
+MaildirStore firstline-local
+SubFolders Verbatim
+Path ~/mail/firstline/
+Inbox ~/mail/firstline/inbox
+
+Channel firstline-inbox
+Far :firstline-remote:"INBOX"
+Near :firstline-local:inbox
+Create Both
+Expunge Both
+
+Channel firstline-drt
+Far :firstline-remote:"drt"
+Near :firstline-local:drt
+Create Both
+Expunge Both
+
+Channel firstline-github
+Far :firstline-remote:"github"
+Near :firstline-local:github
+Create Both
+Expunge Both
+
+Channel firstline-drafts
+Far :firstline-remote:"[Gmail]/Drafts"
+Near :firstline-local:drafts
+Create Both
+Expunge Both
+
+Channel firstline-sent
+Far :firstline-remote:"[Gmail]/Sent Mail"
+Near :firstline-local:sent
+Create Both
+Expunge Both
+
+Channel firstline-trash
+Far :firstline-remote:"[Gmail]/Trash"
+Near :firstline-local:trash
+Create Both
+Expunge Both
+
+Channel firstline-spam
+Far :firstline-remote:"[Gmail]/Spam"
+Near :firstline-local:spam
+Create Both
+Expunge Both
+
+Group firstline
+Channel firstline-inbox
+Channel firstline-drt
+Channel firstline-github
+Channel firstline-drafts
+Channel firstline-sent
+Channel firstline-trash
+Channel firstline-spam
+
+#################################
+####### Account odysseus #######
+#################################
+
+IMAPAccount odysseus
+Host imap.gmail.com
+port 993
+User sergey.suvorov@odysseusinc.com
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.config/neomutt/msmtp-odysseus.gpg)}"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Remote storage
+IMAPStore odysseus-remote
+Account odysseus
+
+# Local storage
+MaildirStore odysseus-local
+Path ~/mail/odysseus/
+Inbox ~/mail/odysseus/inbox
+
+Channel odysseus-inbox
+Far :odysseus-remote:"INBOX"
+Near :odysseus-local:inbox
+Create Both
+Expunge Both
+
+Channel odysseus-drafts
+Far :odysseus-remote:"[Gmail]/Drafts"
+Near :odysseus-local:drafts
+Create Both
+Expunge Both
+
+Channel odysseus-sent
+Far :odysseus-remote:"[Gmail]/Sent Mail"
+Near :odysseus-local:sent
+Create Both
+Expunge Both
+
+Channel odysseus-trash
+Far :odysseus-remote:"[Gmail]/Trash"
+Near :odysseus-local:trash
+Create Both
+Expunge Both
+
+Channel odysseus-spam
+Far :odysseus-remote:"[Gmail]/Spam"
+Near :odysseus-local:spam
+Create Both
+Expunge Both
+
+Group odysseus
+Channel odysseus-inbox
+Channel odysseus-drafts
+Channel odysseus-sent
+Channel odysseus-trash
+Channel odysseus-spam
+
+#################################
+####### Account andersen ########
+#################################
+
+IMAPAccount andersen
+Host mail.andersenlab.com
+port 993
+User s.suvorov@andersenlab.com
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.config/neomutt/msmtp-andersen.gpg)}"
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Remote storage
+IMAPStore andersen-remote
+Account andersen
+
+# Local storage
+MaildirStore andersen-local
+SubFolders Verbatim
+Path ~/mail/andersen/
+Inbox ~/mail/andersen/inbox
+
+Channel andersen-inbox
+Far :andersen-remote:"INBOX"
+Near :andersen-local:inbox
+Create Both
+Expunge Both
+
+Channel andersen-drafts
+Far :andersen-remote:"Drafts"
+Near :andersen-local:drafts
+Create Both
+Expunge Both
+
+Channel andersen-sent
+Far :andersen-remote:"Sent"
+Near :andersen-local:sent
+Create Both
+Expunge Both
+
+Channel andersen-trash
+Far :andersen-remote:"Trash"
+Near :andersen-local:trash
+Create Both
+Expunge Both
+
+Channel andersen-spam
+Far :andersen-remote:"Junk"
+Near :andersen-local:spam
+Create Both
+Expunge Both
+
+Group andersen
+Channel andersen-inbox
+Channel andersen-drafts
+Channel andersen-sent
+Channel andersen-trash
+Channel andersen-spam

@@ -1,0 +1,27 @@
+* Tasks
+** Task 1
+** Task 3
+*** Sub task 31
+*** Sub task 32
+** Task 2
+*** Sub task 21
+    - Note taken on [2021-04-15 Чт 17:24] \\
+      note 1
+*** Sub task 22[fn:1]
+*** TODO test todo
+*** TODO test todo 2
+
+** Task 3
+** 2. 33334
+   1. sdfsd
+   2. sdfsd
+** sdfsdf
+   * [ ] test
+   * [X] sdf
+   * [X] asdad
+** 3. 33444
+   - test
+
+* Footnotes
+
+[fn:1] foot print 

@@ -1,0 +1,29 @@
+set from = "sergeytn81@gmail.com"
+set sendmail = "/usr/bin/msmtp -a gmail"
+
+# Set folders
+set spoolfile = "+gmail/inbox"
+set postponed = "+gmail/drafts"
+set record = "+gmail/sent"
+set trash = "+gmail/trash"
+
+# custom signaure
+#set signature = ~/.mutt/signatures/work
+
+color status green default
+
+macro index o "<shell-escape>mbsync gmail<enter>" "run mbsync to sync mail for this account"
+
+macro index,pager s \
+  "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
+  <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
+  <save-message>+gmail/spam<enter>" \
+  "mark as read and move to junk folder"
+
+#macro index,pager a \
+#  "<save-message>+spam/archive<enter>"  \
+#  "move message to the archive"
+
+macro index,pager i \
+  "<save-message>+gmail/inbox<enter>"  \
+  "move message to the inbox"

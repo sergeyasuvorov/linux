@@ -1,0 +1,29 @@
+set from = "s.suvorov@andersenlab.com"
+set sendmail = "/usr/bin/msmtp -a andersen"
+
+# Set folders
+set spoolfile = "+andersen/inbox"
+set postponed = "+andersen/drafts"
+set record = "+andersen/sent"
+set trash = "+andersen/trash"
+
+# custom signaure
+#set signature = ~/.mutt/signatures/work
+
+color status green default
+
+macro index o "<shell-escape>mbsync andersen<enter>" "run mbsync to sync mail for this account"
+
+macro index,pager s \
+  "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
+  <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
+  <save-message>+andersen/spam<enter>" \
+  "mark as read and move to junk folder"
+
+#macro index,pager a \
+#  "<save-message>+spam/archive<enter>"  \
+#  "move message to the archive"
+
+macro index,pager i \
+  "<save-message>+andersen/inbox<enter>"  \
+  "move message to the inbox"
