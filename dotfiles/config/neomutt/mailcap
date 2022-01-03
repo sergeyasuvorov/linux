@@ -8,7 +8,7 @@ text/csv; /usr/bin/libreoffice %s
 # HTML
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 text/xml; /usr/bin/google-chrome-stable '%s';
-text/plain; emacsclient -c %s
+text/plain; vim %s
 
 #PDFs
 application/pdf; /usr/bin/llpp %s &

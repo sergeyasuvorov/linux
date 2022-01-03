@@ -79,6 +79,9 @@
 (use-package doom-themes
   :init (load-theme 'doom-one t))
 ;;  :init (load-theme 'doom-palenight t))
+;;(use-package dracula-theme
+;;  :init (load-theme 'dracula t))
+
   
 (use-package smart-mode-line
   :config 

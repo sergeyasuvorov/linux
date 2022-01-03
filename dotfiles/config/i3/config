@@ -22,30 +22,6 @@ font pango: Liberation 13
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.bin/lock_blur.sh --nofork
-
-exec --no-startup-id nm-applet
-exec --no-startup-id nitrogen --restore; sleep 1;
-#exec --no-startup-id dropbox start
-exec --no-startup-id skypeforlinux
-exec --no-startup-id "sleep 2; slack"
-exec --no-startup-id telegram-desktop
-exec --no-startup-id volumeicon
-exec --no-startup-id "sleep 3; google-chrome-stable"
-exec --no-startup-id "alacritty -t 'neomutt' -e neomutt"
-exec --no-startup-id "sleep 2; alacritty -t 'calcurse' -e calcurse"
-#exec --no-startup-id "alacritty -t 'cmus' -e cmus"
-exec --no-startup-id emacs
-
-# Keyboard
-exec --no-startup-id setxkbmap -model pc105 -layout "us,ru" -option "grp:ctrl_shift_toggle"
-exec --no-startup-id numlockx
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -136,7 +112,7 @@ set $ws1 1:emacs
 set $ws2 2:term
 set $ws3 3:dev
 set $ws4 4:rdp
-set $ws5 5:
+set $ws5 5:ssh
 set $ws6 6:av
 set $ws7 7:web
 set $ws8 8:mail
@@ -150,6 +126,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
+
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
@@ -167,17 +144,50 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class="^emacs$"] $ws1
+assign [class="^Emacs$"] $ws1
+assign [class="^jetbrains-idea$"] $ws3
 assign [class="^org.remmina.Remmina$"] $ws4
+assign [class="^Putty$"] $ws5
 assign [title="^cmus$"] $ws6
 assign [class="^Deluge-gtk$"] $ws6
 assign [class="^smplayer$"] $ws6
+assign [class="^mpv$"] $ws6
 assign [class="^Google-chrome$"] $ws7
 assign [title="^neomutt$"] $ws8
 assign [title="^calcurse$"] $ws8
 assign [class="^Skype$"] $ws9
 assign [class="^Slack$"] $ws10
 assign [class="^TelegramDesktop$"] $ws10
+
+for_window [class="^jetbrains-idea$"] layout tabbed
+for_window [class="^Putty$"] layout tabbed
+
+exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspace-8.json'"
+exec --no-startup-id "i3-msg 'workspace $ws10; append_layout ~/.config/i3/workspace-10.json'"
+
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.bin/lock_blur.sh --nofork
+
+exec --no-startup-id nm-applet
+exec --no-startup-id nitrogen --restore; sleep 1;
+#exec --no-startup-id dropbox start
+exec --no-startup-id skypeforlinux
+exec --no-startup-id slack
+exec --no-startup-id telegram-desktop
+exec --no-startup-id volumeicon
+exec --no-startup-id "sleep 3; google-chrome-stable"
+exec --no-startup-id "alacritty -t 'neomutt' -e neomutt"
+exec --no-startup-id "rm -f $HOME/.local/share/calcurse/.calcurse.pid; alacritty -t 'calcurse' -e calcurse"
+#exec --no-startup-id "$HOME/programming/ide/idea/bin/idea.sh &"
+#exec --no-startup-id "alacritty -t 'cmus' -e cmus"
+#exec --no-startup-id "remmina &"
+exec --no-startup-id emacs
+
+# Keyboard
+exec --no-startup-id "setxkbmap -model pc105 -layout 'us,ru' -option 'grp:caps_toggle'"
+exec --no-startup-id numlockx
+
+# Switch to first workspace
+exec --no-startup-id "i3-msg 'workspace $ws1'"
 
 bindsym $mod+shift+q mode "$mode_system"
 set $mode_system (l)ock, (e)xit, (r)eboot, (s)hutdown
@@ -222,8 +232,28 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-gaps inner 5 
-gaps outer 3
+bindsym $mod+m mode "move" focus floating
+mode "move" {
+    bindsym $mod+Tab focus right
+
+    bindsym Left  move left
+    bindsym Down  move down
+    bindsym Up    move up
+    bindsym Right move right
+
+    bindsym h     move left
+    bindsym j     move down
+    bindsym k     move up
+    bindsym l     move right
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+
+gaps inner 7
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing
 #  the gap size.
@@ -232,7 +262,7 @@ gaps outer 3
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+#smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -249,4 +279,4 @@ bar {
 
 exec --no-startup-id $HOME/.bin/disable_startup_urgency.sh
 
-exec --no-startup-id xset dpms 3600 3600 3600 s 1800
+exec --no-startup-id "xset dpms 3600 3600 3600 s 1800"

@@ -29,7 +29,7 @@ unset help
 set envelope_from                    # which from?
 set edit_headers                     # show headers when composing
 set fast_reply                       # skip to compose when replying
-unset askcc                            # ask for CC:
+set askcc                            # ask for CC:
 set fcc_attach                       # save attachments with the body
 set forward_format = "Fwd: %s"       # format of subject when forwarding
 set forward_decode                   # decode when forwarding
@@ -38,7 +38,7 @@ set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
 set include                          # include message in replies
 set forward_quote                    # include message in forwards
-set editor = "emacsclient -c"
+set editor = "vim"
 set text_flowed
 unset sig_dashes                     # no dashes before sig
 unset mime_forward                   # forward attachments as part of body

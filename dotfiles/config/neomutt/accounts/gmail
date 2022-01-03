@@ -15,10 +15,12 @@ color status green default
 macro index o "<shell-escape>mbsync gmail<enter>" "run mbsync to sync mail for this account"
 
 macro index,pager s \
-  "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
-  <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
-  <save-message>+gmail/spam<enter>" \
+  "<save-message>+gmail/spam<enter>" \
   "mark as read and move to junk folder"
+
+macro index,pager d \
+  "<save-message>+gmail/trash<enter>" \
+  "mark as read and move to trash folder"
 
 #macro index,pager a \
 #  "<save-message>+spam/archive<enter>"  \

@@ -14,6 +14,7 @@ ln -s $HOME/linux/dotfiles/config/khard $HOME/.config/khard
 ln -s $HOME/linux/dotfiles/config/calcurse/ $HOME/.config/calcurse
 ln -s $HOME/linux/dotfiles/config/deluge/ $HOME/.config/deluge
 ln -s $HOME/linux/dotfiles/.notmuch-config $HOME/.notmuch-config
+ln -s $HOME/linux/dotfiles/.themes $HOME/.themes
 ln -s $HOME/linux/bin $HOME/.bin
 
 ln -s $HOME/linux/dotfiles/config/systemd/user/mbsync.service $HOME/.config/systemd/user/mbsync.service
@@ -26,6 +27,7 @@ chmod +x $HOME/.bin/dunst-urgent-notification.sh
 
 mkdir ~/contacts
 mkdir ~/contacts/firstline
+mkdir ~/contacts/andersen
 mkdir ~/contacts/common
 mkdir ~/mail
 mkdir ~/mail/gmail

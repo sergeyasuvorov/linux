@@ -124,6 +124,9 @@ conn(){
 	nmcli con $2 id $1
 }
 alias k=kubectl
+alias cal="cal -m"
+alias ll="ls -la"
+alias far="far2l --tty"
 
 source $ZSH/oh-my-zsh.sh
 
