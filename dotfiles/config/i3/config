@@ -38,12 +38,12 @@ bindsym $mod+Shift+r restart
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run -fn "-xos4-terminus-medium-r-*-*-14-*"
-bindsym $mod+d exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
 
 ## rofi bindings for window menu (two bindings F10/$mod+t)
-bindsym $mod+t exec rofi -show window -display-window "Window : " -line-padding 4 \
+bindsym $mod+t exec --no-startup-id rofi -show window -display-window "Window : " -line-padding 4 \
                 -lines 10 -padding 50 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
 # A more modern dmenu replacement is rofi:
@@ -155,6 +155,7 @@ assign [class="^mpv$"] $ws6
 assign [class="^Google-chrome$"] $ws7
 assign [title="^neomutt$"] $ws8
 assign [title="^calcurse$"] $ws8
+assign [class="^Evolution$"] $ws8
 assign [class="^Skype$"] $ws9
 assign [class="^Slack$"] $ws10
 assign [class="^TelegramDesktop$"] $ws10

@@ -301,6 +301,13 @@
 #
 # vim: ft=cfg
 
+[evolution]
+    appname = evolution-mail-notification
+    summary = "*" 
+    # urgency = critical 
+    format = ""
+    script = ~/.bin/dunst-urgent-notification.sh
+
 [slack]
     appname = Slack
     summary = "*" 
