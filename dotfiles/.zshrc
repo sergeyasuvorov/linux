@@ -1,4 +1,4 @@
-set history size
+#set history size
 export HISTSIZE=10000
 #save history after logout
 export SAVEHIST=10000
@@ -9,15 +9,13 @@ setopt INC_APPEND_HISTORY
 #save only one command if 2 common are same and consistent
 setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
-setopt EXTENDED_HISTORY
-
-
+setopt EXTENDED_HISTORY   
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+export ZSH="/usr/share/oh-my-zsh/"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -87,6 +85,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -114,23 +113,7 @@ plugins=(git)
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
-
-# Aliases
-conn(){
-	nmcli con $2 id $1
-}
-alias k=kubectl
-alias cal="cal -m"
-alias ll="ls -la"
-alias far="far2l --tty"
-
-source $ZSH/oh-my-zsh.sh
-
-export EDITOR=vim
+. /usr/share/LS_COLORS/dircolors.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
