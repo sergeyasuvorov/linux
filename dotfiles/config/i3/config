@@ -16,7 +16,7 @@ hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 10
+font xft:URWGothic-Book 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -88,8 +88,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+h split h
+bindsym $mod+v split v
 #bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -175,10 +175,17 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Open applications on specific workspaces
+assign [class="^jetbrains-idea$"] $ws2
+assign [class="org.remmina.Remmina"] $ws4
+assign [class="vlc"] $ws6
 assign [class="Google-chrome"] $ws7
 assign [class="Evolution"] $ws8
 assign [class="Skype"] $ws9
-# assign [class="Skype"] $ws5
+assign [class="Slack"] $ws10
+assign [class="TelegramDesktop"] $ws10
+
+for_window[class="^jetbrains-idea$"] layout tabbed
+for_window[class="^org.remmina.Remmina$"] layout tabbed
 
 # Open specific applications in floating mode
 
@@ -232,16 +239,21 @@ mode "resize" {
 }
 
 # Autostart applications
+#exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id google-chrome-stable; sleep 3;
+exec --no-startup-id sleep 3; google-chrome-stable;
 exec --no-startup-id evolution
 exec --no-startup-id skypeforlinux
+exec --no-startup-id slack
+exec --no-startup-id sleep 3; telegram-desktop;
+exec --no-startup-id idea.sh
+exec --no-startup-id remmina
 #exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id nm-applet
-exec --no-startup-id pamac-tray
 #exec --no-startup-id xautolock -time 1800 -locker blurlock
 exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle"
 exec --no-startup-id xset s 7200 7200 -dpms
+exec --no-startup-id numlockx
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -281,7 +293,10 @@ bar {
 	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
+# xrandr --output HDMI-0 --primary
+	tray_output primary
+	font pango:DejaVu Sans 10
+#	font                   pango:Consolas 10
 #	tray_output eDP1
 
 	strip_workspace_numbers yes
@@ -301,7 +316,7 @@ bar {
       	background #002b36
       	statusline #839496
       	separator  #586e75
-      	focused_workspace  #b58900 #b58900 #002b36
+      	focused_workspace  #839496 #002b36 #fdf6e3
       	active_workspace   #586e75 #586e75 #002b36
       	inactive_workspace #073642 #002b36 #839496
       	urgent_workspace   #dc322f #dc322f #fdf6e3

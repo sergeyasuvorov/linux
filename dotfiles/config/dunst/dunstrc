@@ -306,7 +306,7 @@
     summary = "*" 
     # urgency = critical 
     format = ""
-    script = ~/.bin/dunst-urgent-notification.sh
+    script = ~/.bin/dunst-urgent-notification-evolution.sh
 
 [slack]
     appname = Slack
@@ -322,23 +322,10 @@
     format = "" 
     script = ~/.bin/dunst-urgent-notification.sh
 
-[telegram]
-    appname = "Telegram Desktop"
-    summary = "*" 
-    # urgency = critical 
-    format = ""
-    script = ~/.bin/dunst-urgent-notification.sh
+#[telegram]
+#    appname = TelegramDesktop
+#    summary = "*" 
+#    # urgency = critical 
+#    format = ""
+#    script = ~/.bin/dunst-urgent-notification.sh
 
-[neomutt]
-    appname = neomutt
-    summary = "*" 
-    # urgency = critical 
-    format = ""
-    script = ~/.bin/dunst-urgent-notification.sh
-
-[calcurse]
-    appname = calcurse 
-    summary = "*" 
-    # urgency = critical 
-    format = ""
-    script = ~/.bin/dunst-urgent-notification.sh
